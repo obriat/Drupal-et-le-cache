@@ -1,0 +1,367 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <title>DrupalCamp 2017 Lannion - Drupal et le cache</title>
+
+  <link rel="stylesheet" href="css/reveal.css">
+  <link rel="stylesheet" href="css/theme/drupalCamp2017.css">
+  <!-- Theme used for syntax highlighting of code -->
+  <link rel="stylesheet" href="lib/css/zenburn.css">
+
+  <!-- Printing and PDF exports -->
+  <script>  
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+      <!-- SLIDE 1 -->
+      <section 
+      class="section-slide"
+      data-background-transition="fade"
+      data-transition="fade"
+       >
+        <section 
+        data-background="img/LannionHouses_banner_old.jpg" 
+        data-background-transition="fade"
+        data-transition="fade"
+        class="fond_transparent">
+          <h1>Drupal et le cache</h1>
+          <h2>DrupalCamp&nbsp;1917<br>Lannion</h2>
+          <p>
+            <small>
+              <a href="#">Old Briat</a>
+            </small>
+          </p>
+        </section>
+      <section 
+        data-background="img/LannionHouses_banner.jpg" 
+        data-background-transition="fade"
+        data-transition="fade"
+        class="fond_transparent">
+          <h1>Drupal et le cache</h1>
+          <h2>DrupalCamp&nbsp;2017<br>Lannion</h2>
+          <p>
+            <small>
+              <a href="#">Olivier Briat</a>
+            </small>
+          </p>
+
+        </section>
+      </section>
+
+      <!-- SLIDE 2 -->
+      <section  
+      data-background="img/Fond-Cap.png" 
+        class="section-slide" >
+        <section data-markdown style="text-align: left; width 50%;font-size: 2rem;">
+          ![me-myself-and-I](img/me-myself-and-I.png)
+          ## Olivier Briat
+          - Cap Gemini Nantes
+          - Lead Dev Drupal
+          - sncf.com
+          - 5 ans de Drupal (6, 7 et 8)
+          - Contributeur au module Redis (D8)
+        </section>
+ 
+      </section>
+      <!-- SLIDE 2 -->
+      <section  
+data-background="img/Fond.png" 
+        class="section-slide" 
+      >
+        <section 
+        data-markdown 
+        style="text-align: left; width 50%;font-size: 2rem;">
+          ## Proudly found elsewhere
+          - Drupal 8 Caching overview / Berdir / Drupal Dev Days Seville 2017
+          - Render API & Cache API / Artusamak / Drupal Camp Nantes 2016
+          - Drupal 8 Caching - A Developer’s Guide / Peter Sawczynec / Pacific Northwest Drupal Submit 2016
+       </section>
+
+        <section 
+        data-markdown 
+        style="text-align: left; width 50%">
+         ## Thèmes
+          - Rappel des basiques
+          - Caches en amont de Drupal
+          - Cache anonyme
+          - Cache dynamique
+          - Code
+          - Backends
+        </section>
+ 
+ 
+      </section>
+
+      <section 
+      data-background="img/Fond.png" 
+        class="section-slide" >
+        <section>
+          <h1>Rappel des basiques</h1>
+        </section>
+        <section>
+          <h2>Pourquoi ?</h2>
+          <div class="fragment">
+            Pour améliorer les performances
+          </div>
+          <h2 class="fragment">Comment ?</h2>
+          <div class="fragment">
+            En stockant le résultat de processus couteux pour ne pas avoir à les calculer encore et encore...
+          </div>
+        </section>
+        <section style="text-align: left;">
+          <p>Contrairement à Drupal 7 le cache est activé par défaut dans Drupal8.</p>
+          <div class="fragment">
+            <p>Il faut le désactiver en mode développement</p>
+            <p>Et décommenter les lignes suivantes du settings.php</p>
+            <pre><code class="hlphp"
+>if (file_exists(__DIR__ . '/settings.local.php')) {
+  include __DIR__ . '/settings.local.php';
+}</code></pre>
+</div> 
+<small class="fragment">On reviendra plus tard sur les autres impacts de ce fichier.</small>
+        </section>
+      </section>
+
+      <section 
+      data-background="img/Fond.png" 
+        class="section-slide" >
+        <section>
+          <h1>Caches en amont de Drupal</h1>
+        </section>
+        <section style="text-align: left;">
+          <div>
+            <p>Le premier cache est celui du navigateur</p>
+          </div>
+          <small class="fragment"><u>http://www.monsitedrupal.org/fr?arg=1</u>#section1</small>
+          <div class="fragment" style="float: left;">
+            <img src="img/header.png" height="400">
+          </div>
+          <div class="fragment"  style="float: left;">
+            <img src="img/admin-Performance.png" height="400">
+          </div>
+
+        </section>
+        <section style="text-align: left;">
+          <div>
+            <p>Pour les ressources (img, css, ...) le réglage s'effectue dans le .htaccess</p>
+          </div>
+<pre class="fragment"><code class="hlapache"
+># Requires mod_expires to be enabled.
+<IfModule mod_expires.c>
+  # Enable expirations.
+  ExpiresActive On
+
+  # Cache all files for 2 weeks after access (A).
+  ExpiresDefault A1209600
+
+  <FilesMatch \.php$>
+    # Do not allow PHP scripts to be cached unless they explicitly 
+    # send cache headers themselves(...)
+    ExpiresActive Off
+  </FilesMatch>
+</IfModule></code></pre>
+
+        </section>
+
+        <section style="text-align: left;">
+
+            <p>Proxy <span style="font-size: 0.6em">(cache-control: public)</span></p>
+            <p>CDN <span style="font-size: 0.6em">(assets / fichier statiques)</span></p>
+            <p>Varnish :</p>
+            <ul style="font-size: 0.6em">
+              <li class="fragment">Choix classique avec Drupal</li>
+              <li class="fragment">Couteau suisse des headers http</li>
+              <li class="fragment">Peut cacher un site indisponible</li>
+              <li class="fragment">Peut être piloté par Drupal (module purge)</li>
+              <li class="fragment">Peut-être remplacé par le micro caching de votre serveur Nginx</li>
+              <li class="fragment">Il remplace le...</li>
+            </ul>
+            <p class="fragment">Bigpipe</p>
+            <p class="fragment">HTTP 2</p>
+         
+        </section>
+      </section>
+
+
+      <section 
+        data-background="img/Fond.png" 
+        class="section-slide" >
+        <section>
+          <h1>Cache Anonyme</h1>
+          <div class="fragment" style="text-align: left; font-size: 0.6em">
+            <ul style="font-size: 0.8em">
+              <li> Très rapide</li>
+              <li>Géré par le module "Internal Page Cache"</li>
+              <li>Cache l'intégralité du rendu html d'une page <u>anonyme</u> dans le cache</li>
+              <li>La clé est l'URL complète, la durée de cache est infini</li>
+              <li>Utilise les "cache tags", mais pas les "cache contexts" ou le "max age" (mais respect le header "Expires" de la response)</li>
+              <li>Il peut être désactivé si on utilise un type de cache similaire (Varnish)</li>
+            </ul>
+            <div style="text-align: center">
+              <img src="img/header.png" height="350">
+            </div>
+          </div>
+
+
+        </section>
+      </section>
+
+
+      <section 
+        data-background="img/Fond.png" 
+        class="section-slide" >
+        <section>
+          <h1>Cache dynamique</h1>
+          <div class="fragment" style="text-align: left; font-size: 0.6em">
+            <div>
+            <p>Géré par le module "Internal Page Cache"</p>
+            <p>Cache l'intégralité du rendu html d'une page <u>anonyme</u> dans le cache</p>
+            <p>Il peut être désactivé si on utilise un type de cache similaire (Varnish)</p>
+          </div>
+            <img src="img/header.png" height="350">
+          </div>
+
+
+        </section>
+      </section>
+
+
+
+      <section 
+        data-background="img/Fond.png" 
+        class="section-slide" >
+        <section>
+          <h1>Code</h1>
+        </section>
+
+
+       <section>
+https://api.drupal.org/api/drupal/core!core.api.php/group/cache/8.5.x
+
+``` 
+ // Definir une clé
+ $cid = 'mymodule_example:' . \Drupal::languageManager()->getCurrentLanguage()->getId();
+$data = NULL;
+// Lire le contenu de la clé  (ici dans le cache.default).
+if ($cache = \Drupal::cache()->get($cid)) {
+  $data = $cache->data;
+}
+// Si la clé n'existe pas faire les "calculs" et stocker le résultats dans le cache.
+else {
+  $data = my_module_complicated_calculation();
+  \Drupal::cache()->set($cid, $data);
+}
+```
+        </section>
+
+      </section>
+
+
+      <section 
+        data-background="img/Fond.png" 
+        class="section-slide" >
+        <section>
+          <h1>Backends</h1>
+          <div class="fragment" style="text-align: left; font-size: 0.6em">
+            <div>
+              <p>Par défaut mysql</p>
+              <p>Attention le cache n'est qu'invalider, donc les tables ne font que grossir (</p>
+              <p>Cache l'intégralité du rendu html d'une page <u>anonyme</u> dans le cache</p>
+              <p>Il peut être désactivé si on utilise un type de cache similaire (Varnish)</p>
+            </div>
+            <img src="img/header.png" height="350">
+          </div>
+
+
+        </section>
+      </section>
+
+     <section 
+        data-background="img/Fond.png" 
+        class="section-slide" >
+          <section >
+            <h1>Des questions ?</h1>
+          </section>
+      </section>
+
+     <section 
+        data-background="img/Fond.png" 
+        class="section-slide" >
+          <section >
+            <h1>Merci</h1>
+          </section>
+          <section >
+            <h2>à toute l'équipe du DrupalCamp Lannion 2017</h2>
+            <div><img src="img/drupalicon--homepage.png"></div>
+          </section>
+          <section>
+            <h2>aux sponsors</h2>
+            <div><img src="img/partenaires.png" alt="" height ="500"></div>
+          </section>
+      </section>
+
+
+      <!-- Ref -->
+      <section  
+data-background="img/Fond.png" 
+        class="section-slide" 
+      >
+          <section >
+            <h1>Références</h1>
+          </section>
+          <section data-markdown style="text-align: left; width 50%;font-size: 2rem;">
+            ## Conférences
+            - https://md-systems.github.io/drupal-8-caching/
+            - https://nantes2016.drupalcamp.fr/programme/sessions/render-api-cache-api
+            - https://pnwdrupalsummit.org/sites/default/files/slides/Drupal%208%20Caching.pdf
+            - Drupal 8 cache for developers - José Jiménez Carrión #DrupalCampES @jjca : https://youtu.be/kfy_JAKudnw
+            - Drupal 8 Caching: A Developer’s Guide : https://youtu.be/eB4NWo5XwMY
+            - BigPipe : https://youtu.be/JwzX0Qv6u3A
+         </section>
+         <section  data-markdown style="text-align: left; width 50%;font-size: 2rem;">
+          ## Serveurs
+          - https://varnish-cache.org/
+          - https://redis.io/documentation
+         </section>
+         <section data-markdown style="text-align: left; width 50%;font-size: 2rem;">
+          ## API
+          - https://api.drupal.org/api/drupal/core!core.api.php/group/cache/8.5.x
+          - https://www.drupal.org/docs/8/administering-drupal-8-site/internal-page-cache
+          - https://www.drupal.org/docs/8/core/modules/dynamic-page-cache/overview
+          - https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/http-caching
+         </section>
+      </section>
+    </div>
+  </div>
+
+  <script src="lib/js/head.min.js"></script>
+  <script src="js/reveal.js"></script>
+
+  <script>
+      // More info https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        history: true,
+
+        // More info https://github.com/hakimel/reveal.js#dependencies
+        dependencies: [
+          { src: 'plugin/markdown/marked.js' },
+          { src: 'plugin/markdown/markdown.js' },
+          { src: 'plugin/zoom-js/zoom.js', async: true },
+          { src: 'plugin/notes/notes.js', async: true },
+          { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+        ]
+      });
+    </script>
+</body>
+</html>
