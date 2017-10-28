@@ -24,6 +24,8 @@
   <div class="reveal">
     <div class="slides">
 
+      <!-- Avertissement : ce n'est vraiement pas beau sous le capot... -->
+
       <!-- ################## SLIDE ################## -->
       <section 
       class="section-slide"
@@ -456,8 +458,8 @@ $renderer->addCacheableDependency(
 $cache_tag_invalidator->invalidateTags(['my_tag']);
 Cache::invalidateTags(['my_tag']);
             </code></pre>
-            <p style="font-size: 0.8em">À l'enregistrement d'un cache on stocke le checksum de la somme des  compteurs d'invalidation des tags concernés.</p>
-            <p style="font-size: 0.8em">À l'appel du cache on recalcule ce checksum, s'il diffère le cache régénéré.</p>
+            <p style="font-size: 0.8em">À l'enregistrement d'un cache on stocke de la somme des compteurs d'invalidation des tags concernés.</p>
+            <p style="font-size: 0.8em">À l'appel du cache on recalcule ce checksum, s'il diffère le cache est régénéré.</p>
         </section>
 
         <section>
@@ -493,8 +495,8 @@ else {
             <p>Il y a différents "containeurs" de cache, chacun peut être utilisé un "backend" spécifique.</p>
                 <ul>
                   <li>default : cache par défaut, pour de petits contenu avec peu de clés</li>
-                  <li>data : pour les gros caches avec de nombreuse clés</li>
-                  <li>discovery : Petit, utilisé fréquemment, utilisé par les plugins et les processus de découverte</li>
+                  <li>data : pour les gros caches avec de nombreuses clés</li>
+                  <li>discovery : Petit, utilisé fréquemment, principalement par les plugins et les processus de découvertes</li>
                   <li>Null : pour désactiver le cache (dev)</li>
                 </ul>
                 <p>On peut créer son propre "bin".</p>
@@ -531,17 +533,6 @@ else {
 
         </section>
       </section>
-
-      <!-- ################## SLIDE ################## -->
-      <section 
-        data-background="img/Fond.png" 
-        class="section-slide" >
-        <section >
-          <h2>Des questions ?</h2>
-          <p class="fragment">Cache d'une route avec JsonResponse </p>
-        </section>
-      </section>
-
       <!-- ################## SLIDE ################## -->
       <section 
         data-background="img/Fond.png" 
@@ -558,6 +549,14 @@ else {
           <h2>aux sponsors</h2>
           <div>
             <img src="img/partenaires.png" alt="" height ="500"></div>
+        </section>
+      </section>
+      <!-- ################## SLIDE ################## -->
+      <section 
+        data-background="img/Fond.png" 
+        class="section-slide" >
+        <section >
+          <h2>Des questions ?</h2>
         </section>
       </section>
 
