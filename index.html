@@ -24,7 +24,7 @@
   <div class="reveal">
     <div class="slides">
 
-      <!-- SLIDE 1 -->
+      <!-- ################## SLIDE ################## -->
       <section 
       class="section-slide"
       data-background-transition="fade"
@@ -35,126 +35,132 @@
         data-background-transition="fade"
         data-transition="fade"
         class="fond_transparent">
-          <h1>Drupal et le cache</h1>
-          <h2>DrupalCamp&nbsp;1917<br>Lannion</h2>
+          <h2>Drupal et le cache</h2>
+          <h2>
+            DrupalCamp&nbsp;1917
+            <br>Lannion</h2>
           <p>
             <small>
               <a href="#">Old Briat</a>
             </small>
           </p>
         </section>
-      <section 
+        <section 
         data-background="img/LannionHouses_banner.jpg" 
         data-background-transition="fade"
         data-transition="fade"
         class="fond_transparent">
-          <h1>Drupal et le cache</h1>
-          <h2>DrupalCamp&nbsp;2017<br>Lannion</h2>
+          <h2>Drupal et le cache</h2>
+          <h2>
+            DrupalCamp&nbsp;2017
+            <br>Lannion</h2>
           <p>
             <small>
               <a href="#">Olivier Briat</a>
             </small>
           </p>
-
         </section>
       </section>
 
-      <!-- SLIDE 2 -->
-      <section  
-      data-background="img/Fond-Cap.png" 
-        class="section-slide" >
-        <section data-markdown style="text-align: left; width 50%;font-size: 2rem;">
+      <!-- ################## SLIDE ################## -->
+      <section data-background="img/Fond-Cap.png" class="section-slide" >
+        <section data-markdown style="text-align: left; width 50%;font-size: 1.8rem;">
           ![me-myself-and-I](img/me-myself-and-I.png)
           ## Olivier Briat
-          - Cap Gemini Nantes
+          - Capgemini Nantes
           - Lead Dev Drupal
           - sncf.com
           - 5 ans de Drupal (6, 7 et 8)
           - Contributeur au module Redis (D8)
         </section>
- 
-      </section>
-      <!-- SLIDE 2 -->
-      <section  
-data-background="img/Fond.png" 
-        class="section-slide" 
-      >
-        <section 
-        data-markdown 
-        style="text-align: left; width 50%;font-size: 2rem;">
-          ## Proudly found elsewhere
-          - Drupal 8 Caching overview / Berdir / Drupal Dev Days Seville 2017
-          - Render API & Cache API / Artusamak / Drupal Camp Nantes 2016
-          - Drupal 8 Caching - A Developer’s Guide / Peter Sawczynec / Pacific Northwest Drupal Submit 2016
-       </section>
-
-        <section 
-        data-markdown 
-        style="text-align: left; width 50%">
-         ## Thèmes
-          - Rappel des basiques
-          - Caches en amont de Drupal
-          - Cache anonyme
-          - Cache dynamique
-          - Code
-          - Backends
-        </section>
- 
- 
       </section>
 
-      <section 
-      data-background="img/Fond.png" 
-        class="section-slide" >
+      <!-- ################## SLIDE ################## -->
+      <section data-background="img/Fond.png" class="section-slide" >
         <section>
-          <h1>Rappel des basiques</h1>
+          <h2>Inspirations</h2>
+          <p>Proudly found elsewhere</p>
+          <ul>
+            <li><b>Drupal 8 Caching overview<</b> / Berdir / Drupal Dev Days Seville 2017</li>
+            <li><b>Render API & Cache API</b> / Artusamak / Drupal Camp Nantes 2016</li>
+            <li><b>Drupal 8 Caching - A Developer’s Guide</b> / Peter Sawczynec / Pacific Northwest Drupal Submit 2016</li>
+          </ul>
+          <p>
+            <i style="font-size:0.5em">
+              <a href="https://obriat.github.io/Drupal-et-le-cache/">Dispo en ligne</a> (<a href="https://github.com/obriat/Drupal-et-le-cache">sources</a>)
+            </i>
+          </p>
+        </section>
+
+        <section>
+            <h2>Au sommaire</h2>
+            <ul>
+              <li>Rappel des basiques</li>
+              <li>Caches en amont de Drupal</li>
+              <li>Cache anonyme de page</li>
+              <li>Cache dynamique de page </li>
+              <li>Cache de "rendu"</li>
+              <li>Utiliser du cache dans son code</li>
+              <li>Backends</li>
+              <li>Des Questions ?</li>
+        </section>
+
+      </section>
+
+      <!-- ################## SLIDE ################## -->
+      <section data-background="img/Fond.png" class="section-slide" >
+        <section>
+          <h2>Rappel des basiques</h2>
         </section>
         <section>
           <h2>Pourquoi ?</h2>
-          <div class="fragment">
-            Pour améliorer les performances
-          </div>
+          <div class="fragment">Pour améliorer les performances</div>
           <h2 class="fragment">Comment ?</h2>
           <div class="fragment">
             En stockant le résultat de processus couteux pour ne pas avoir à les calculer encore et encore...
           </div>
         </section>
         <section style="text-align: left;">
-          <p>Contrairement à Drupal 7 le cache est activé par défaut dans Drupal8.</p>
+          <p>
+            Contrairement à Drupal 7 le cache est activé par défaut dans Drupal8.
+          </p>
           <div class="fragment">
-            <p>Il faut le désactiver en mode développement</p>
-            <p>Et décommenter les lignes suivantes du settings.php</p>
+            <p>Il est vivement conseiller de le désactiver en mode développement</p>
+            <p>Il suffit de décommenter les lignes suivantes du <code>settings.php</code></p>
             <pre><code class="hlphp"
 >if (file_exists(__DIR__ . '/settings.local.php')) {
   include __DIR__ . '/settings.local.php';
 }</code></pre>
-</div> 
-<small class="fragment">On reviendra plus tard sur les autres impacts de ce fichier.</small>
+          </div>
+          <small class="fragment">On reviendra plus tard sur ce fichier.</small>
         </section>
       </section>
 
-      <section 
-      data-background="img/Fond.png" 
-        class="section-slide" >
+      <!-- ################## SLIDE ################## -->
+      <section data-background="img/Fond.png" class="section-slide" >
         <section>
-          <h1>Caches en amont de Drupal</h1>
+          <h2>Caches en amont de Drupal</h2>
         </section>
+
         <section style="text-align: left;">
           <div>
             <p>Le premier cache est celui du navigateur</p>
           </div>
-          <small class="fragment"><u>http://www.monsitedrupal.org/fr?arg=1</u>#section1</small>
+          <small class="fragment"> <u>http://www.monsitedrupal.org/fr?arg=1</u>
+            #section1
+          </small>
           <div class="fragment" style="float: left;">
-            <img src="img/header.png" height="400">
-          </div>
+            <img src="img/header.png" height="400"></div>
           <div class="fragment"  style="float: left;">
             <img src="img/admin-Performance.png" height="400">
           </div>
-
         </section>
+
         <section style="text-align: left;">
           <div>
-            <p>Pour les ressources (img, css, ...) le réglage s'effectue dans le .htaccess</p>
+            <p>
+              Pour les ressources (img, css, ...) le réglage s'effectue dans le <code>.htaccess</code>
+            </p>
           </div>
 <pre class="fragment"><code class="hlapache"
 ># Requires mod_expires to be enabled.
@@ -171,183 +177,428 @@ data-background="img/Fond.png"
     ExpiresActive Off
   </FilesMatch>
 </IfModule></code></pre>
-
         </section>
 
         <section style="text-align: left;">
-
-            <p>Proxy <span style="font-size: 0.6em">(cache-control: public)</span></p>
-            <p>CDN <span style="font-size: 0.6em">(assets / fichier statiques)</span></p>
-            <p>Varnish :</p>
-            <ul style="font-size: 0.6em">
-              <li class="fragment">Choix classique avec Drupal</li>
-              <li class="fragment">Couteau suisse des headers http</li>
-              <li class="fragment">Peut cacher un site indisponible</li>
-              <li class="fragment">Peut être piloté par Drupal (module purge)</li>
-              <li class="fragment">Peut-être remplacé par le micro caching de votre serveur Nginx</li>
-              <li class="fragment">Il remplace le...</li>
-            </ul>
-            <p class="fragment">Bigpipe</p>
-            <p class="fragment">HTTP 2</p>
-         
+          <h2>les caches suivants sont :</h2>
+          <p class="fragment">
+            Proxy
+            <span style="font-size: 0.6em">(cache-control: public)</span>
+          </p>
+          <p class="fragment">
+            CDN
+            <span style="font-size: 0.6em">(assets / fichiers statiques)</span>
+          </p>
+          <p class="fragment">Varnish :</p>
+          <ul style="font-size: 0.6em">
+            <li class="fragment">Choix classique avec Drupal</li>
+            <li class="fragment">Couteau suisse des headers http</li>
+            <li class="fragment">Peut cacher un site indisponible</li>
+            <li class="fragment">Peut être piloté par Drupal (module purge)</li>
+            <li class="fragment">
+              Peut-être remplacé par le micro caching de votre serveur Nginx
+            </li>
+            <li class="fragment">Il remplace le...</li>
+          </ul>
         </section>
       </section>
 
-
-      <section 
-        data-background="img/Fond.png" 
-        class="section-slide" >
+      <!-- ################## SLIDE ################## -->
+      <section data-background="img/Fond.png" class="section-slide" >
         <section>
-          <h1>Cache Anonyme</h1>
-          <div class="fragment" style="text-align: left; font-size: 0.6em">
+          <h2>Cache anonyme de page</h2>
+          <div style="text-align: left; font-size: 0.8em; width:50%;float:left;">
             <ul style="font-size: 0.8em">
-              <li> Très rapide</li>
-              <li>Géré par le module "Internal Page Cache"</li>
-              <li>Cache l'intégralité du rendu html d'une page <u>anonyme</u> dans le cache</li>
-              <li>La clé est l'URL complète, la durée de cache est infini</li>
-              <li>Utilise les "cache tags", mais pas les "cache contexts" ou le "max age" (mais respect le header "Expires" de la response)</li>
-              <li>Il peut être désactivé si on utilise un type de cache similaire (Varnish)</li>
+              <li class="fragment">
+                Cache l'intégralité du rendu html d'une page <u>anonyme</u>
+                dans le cache
+              </li>
+              <li class="fragment">Très rapide</li>
+              <li class="fragment">Géré par le module "Internal Page Cache"</li>
+              <li class="fragment">La clé est l'URL complète</li>
+              <li class="fragment">Utilise les "cache tags", mais pas les "cache contexts" ou le "max age" (mais respect le header "Expires" de la response)</li>
+              <li class="fragment">Il peut être désactivé si on utilise un type de cache similaire (Varnish)</li>
             </ul>
-            <div style="text-align: center">
+          </div>
+          <div class="fragment" style="text-align: center;width:50%;float:left;">
               <img src="img/header.png" height="350">
+          </div>
+        </section>
+      </section>
+
+
+      <!-- ################## SLIDE ################## -->
+      <section data-background="img/Fond.png" class="section-slide" >
+        <section >
+          <h2>Avant d'aller plus loin</h2>
+        </section>
+        <section >  
+          <p>
+            Désactiver le cache et activer les options de débug.
+          </p>
+          <div class="fragment">
+            <code>settings.local.php</code>
+            <pre><code class="php"  style="width:115%"  
+>$settings['container_yamls'][] = DRUPAL_ROOT . '/sites/development.services.yml';
+
+$config['system.logging']['error_level'] = 'verbose';
+
+$config['system.performance']['css']['preprocess'] = FALSE;
+$config['system.performance']['js']['preprocess'] = FALSE;
+
+# $settings['cache']['bins']['render'] = 'cache.backend.null';
+
+# $settings['cache']['bins']['dynamic_page_cache'] = 'cache.backend.null';</code></pre>
+          </div>
+
+          <div class="fragment">
+          <code>development.services.yml</code>
+            <pre><code class="php"  style="width:115%"   
+>parameters:
+  http.response.debug_cacheability_headers: true
+services:
+  cache.backend.null:
+    class: Drupal\Core\Cache\NullBackendFactory
+</code></pre>
+          </div>
+        </section>
+        <section >
+           <img src="img/header.png" height="350">
+        </section>
+        <section >
+          <p>Mais surtout : </p>
+          <p class="fragment">N'oubliez de réactiver les caches avant de tester votre dev...</p>
+        </section>
+      </section>
+
+      <!-- ################## SLIDE ################## -->
+      <section data-background="img/Fond.png" class="section-slide">
+        <section>
+          <h2>Cache dynamique de page</h2>
+        </section>
+        <section>
+          <p>Ce cache est plus fin (et plus lent) que le cache anonyme :</p>
+          <p>Il agrège le cache des éléments qui compose la page, ceux-ci agrège à leur tours le cache des éléments qui les compose, etc....</p>
+          <p>Lorsque le cache d'un élément n'est plus valide, par "bouillonnement", il invalide les caches de tous ses parents, mais sans toucher ses voisins<p>
+        </section>
+        <section> 
+          <img src="img/invalidation_example_start.svg" height="500">  
+          <br><small>Schémas @berdir</small>
+        </section>
+        <section> 
+          <p>Modification du node 5 et création du node 7</p>
+          <img src="img/invalidation_example_invalidated.svg" height="500">  
+        </section>
+        <section> 
+          <img src="img/invalidation_example_rebuild_3.svg" height="500">  
+        </section>          
+        <section>
+          <h2>Auto-placeholdering (#lazy_builder)</h2>
+          <p>Permet d'utiliser des <i>render array</i> très changeantes sans invalider le cache parent. Le code "dynamique" est injecté à la fin du rendu.</p>
+<pre><code class="yaml">renderer.config:
+    auto_placeholder_conditions:
+      max-age: 0
+      contexts: ['session', 'user']
+      tags: []</code></pre>
+        </section>  
+      </section>
+      <!-- ################## SLIDE ################## -->
+      <section data-background="img/Fond.png" class="section-slide">
+        <section>
+          <h2>Cache de "rendu"</h2>
+        </section>
+        <section>
+          <p>Les éléments qui compose le "cache dynamique de page" sont bien entendu les "render array" Drupal.</p>
+          <p>La plupart ont des métadonnées de cache dont les parents héritent</p>
+          <img class="fragment" src="img/render_array_cache.png"> 
+          <img class="fragment" src="img/render_array_cache2.png">
+        </section>
+        <section>
+          <p>Ces métas-données s'agrègent donc jusqu'à la page et ses headers</p>
+            <div style="text-align: center;width:50%;float:left;">
+                <img src="img/header.png" height="350">
             </div>
-          </div>
-
-
+          <p class="fragment" style="clear: both;">Module renderviz : pour le débogage en profondeur des métadonnées de cache.</p>
         </section>
-      </section>
-
-
-      <section 
-        data-background="img/Fond.png" 
-        class="section-slide" >
         <section>
-          <h1>Cache dynamique</h1>
-          <div class="fragment" style="text-align: left; font-size: 0.6em">
-            <div>
-            <p>Géré par le module "Internal Page Cache"</p>
-            <p>Cache l'intégralité du rendu html d'une page <u>anonyme</u> dans le cache</p>
-            <p>Il peut être désactivé si on utilise un type de cache similaire (Varnish)</p>
-          </div>
-            <img src="img/header.png" height="350">
-          </div>
+            <h2>Les métadonnées de cache</h2>
+            <img class="fragment" src="img/render_array_cache2.png" style="float:right" height="200"> 
+            <ul style="float:left;text-align: left;display: block;width: 55%;font-size:0.8em">
+              <li class="fragment">Cache Contexts : <span style="font-size:0.8em">Permet d'avoir des variantes de cache en fonction du...</span> <span class="fragment"  style="font-size:0.8em">contexte (theme, language, user roles, permissions, URL, QS, timezone,... )</span></li>
+              <li class="fragment">Cache Tags : <span style="font-size:0.8em">Permet d'invalider des types de caches (node:x, config:, user,....)</span></li>
+             <li class="fragment">Max Age : <span style="font-size:0.8em">Permanent (-1), age en seconds (3600), ne pas cacher (0)
+</span></li>  
+            </ul>
+           
+
+
+
+    
+
+
+
+
+
+
 
 
         </section>
-      </section>
-
-
-
-      <section 
-        data-background="img/Fond.png" 
-        class="section-slide" >
         <section>
-          <h1>Code</h1>
+<pre><code class="php"  style="max-height:80vh;width:60vw">$renderer = \Drupal::service('renderer');
+
+$config = \Drupal::config('system.site');
+$current_user = \Drupal::currentUser();
+
+$build = [
+  '#markup' => t('Hi, %name, welcome back to @site!', [
+    '%name' => $current_user->getUsername(), 
+    '@site' => $config->get('name'), 
+  ]),
+  '#cache' => [
+    'contexts' => [ 
+      // The "current user" is used above, which depends on the request, 
+      // so we tell Drupal to vary by the 'user' cache context.
+      'user', 
+    ],
+  ], 
+];
+
+// Merges the cache contexts, cache tags and max-age of the config object 
+// and user entity that the render array depend on.
+$renderer->addCacheableDependency($build, $config);
+$renderer->addCacheableDependency(
+  $build, 
+  \Drupal\user\Entity\User::load($current_user->id())
+);</code></pre>
+        </section>
+        <section>
+          <h2>Plugin contexts</h2>
+          <p>
+            Fonctionne avec les <i>annotation context</i>   (typiquement dans la définition d'un block)</p>
+        <p>
+        A propos des block, attention a bien rendre <code>content</code>, dans le fichier Twig du contenu, car c'est lui qui porte les métadonnées de cache, voir : 
+        https://www.previousnext.com.au/blog/ensuring-drupal-8-block-cache-tags-bubble-up-page</p>
+          </section>
+  
+      </section>
+      <!-- ################## SLIDE ################## -->
+      <section data-background="img/Fond.png" class="section-slide">
+        <section>
+          <h2>Utiliser du cache dans son code</h2>
+          <p class="fragment">Utilisateurs, sites-builders, pas de panique :</p>
+          <p class="fragment">Drupal gère le cache tout seul !</p>
+          <p class="fragment">Développeurs de tous horizons, voici comment l'utiliser :</p>
+        </section>
+        <section>
+            <h2>Static</h2>
+            <ul>
+              <li>"cache" utilisant le fait qu'une variable static n'est pas détruite à la fin de l'exécution d'une fonction.</li>
+              <li>On peut continuer à utiliser drupal_static() pour le code procédural.</li>
+              <li>En mode OO, n'oubliez pas que les "services" sont des "singletons" et donc leurs propriétés sont également persistantes</li>
+            </ul>
+        </section>
+        <section>
+            <h2>Get / Set</h2>
+<pre><code class="php">function mes_donnees_metier();
+  // Ma clé
+  $key = 'mon_module' . ':' . __FUNCTION__ . ':' .
+  \Drupal::languageManager()->getCurrentLanguage()->getId();
+  // Est-ce que le cache existe ?
+  if ($cache = \Drupal::cache()->get($key)) {
+    $data = $cache->data;
+  }
+  // Pas de cache : on traite les données et 
+  // on les stocke dans le cache.
+  else {
+    $data = mon_traitement_metier_super_lent();
+    \Drupal::cache()->set($key, $data);
+  }
+  return $data;
+}</code></pre>
+        </section>
+        <section>
+          <p>Duration</p>
+<pre><code class="php"
+>// Possible de préciser une durée de validité (timestamp)
+\Drupal::cache()->set($key, $data, REQUEST_TIME + 600);
+</code></pre>
+          <p>Tags</p>
+<pre><code class="php"
+>// Associer des tags
+\Drupal::cache()->set(
+  $key, 
+  $data, 
+  Cache::PERMANENT, 
+  [
+   'tag1',
+    'node:1',
+    'config:system.menu',
+    'config:mon_module',
+  ]
+);</code></pre>         
         </section>
 
+        <section>
+            <p>Suppression / Invalidation</p>
+<pre><code class="php"
+>// Suppression du cache (rapide)
+\Drupal::cache()->delete('mon_module:donnees_caches');
+\Drupal::cache()->deleteMultiple([
+  'mon_module:cle1',
+  'mon_module:cle2',
+  ...
+]);
+\Drupal::cache()->deleteAll();
 
-       <section>
-https://api.drupal.org/api/drupal/core!core.api.php/group/cache/8.5.x
+// Invalidation : non conseillé (Berdir)
 
-``` 
- // Definir une clé
- $cid = 'mymodule_example:' . \Drupal::languageManager()->getCurrentLanguage()->getId();
-$data = NULL;
-// Lire le contenu de la clé  (ici dans le cache.default).
-if ($cache = \Drupal::cache()->get($cid)) {
-  $data = $cache->data;
+// Invalidation de tag (incrémentation du compteur d'invalidation)
+$cache_tag_invalidator->invalidateTags(['my_tag']);
+Cache::invalidateTags(['my_tag']);
+            </code></pre>
+            <p style="font-size: 0.8em">À l'enregistrement d'un cache on stocke le checksum de la somme des  compteurs d'invalidation des tags concernés.</p>
+            <p style="font-size: 0.8em">À l'appel du cache on recalcule ce checksum, s'il diffère le cache régénéré.</p>
+        </section>
+
+        <section>
+            <p>Divers</p>
+             <pre><code class="php"
+>\Drupal::cache()->getMultiple($keys);
+\Drupal::cache()->setMultiple($items);</code></pre>
+            <p style="font-size: 0.8em">Utiliser du cache périmé (pour faire patienter) </p>
+             <pre><code class="php"
+>$cache = \Drupal::cache()->get('my-key', TRUE);
+if ($cache && $cache->valid) {
+  return $cache->data;
 }
-// Si la clé n'existe pas faire les "calculs" et stocker le résultats dans le cache.
+elseif (\Drupal::lock()->acquire('my-key')) {
+  // Rebuild and set new data.
+}
+elseif ($cache) {
+  // Someone else is rebulding, work with stale data.
+  return $cache->data;
+}
 else {
-  $data = my_module_complicated_calculation();
-  \Drupal::cache()->set($cid, $data);
-}
-```
+  // Wait or rebuild.
+}</code></pre>
         </section>
-
       </section>
 
-
+      <!-- ################## SLIDE ################## -->
       <section 
         data-background="img/Fond.png" 
         class="section-slide" >
         <section>
-          <h1>Backends</h1>
+          <h2>Bins</h2>
+            <p>Il y a différents "containeurs" de cache, chacun peut être utilisé un "backend" spécifique.</p>
+                <ul>
+                  <li>default : cache par défaut, pour de petits contenu avec peu de clés</li>
+                  <li>data : pour les gros caches avec de nombreuse clés</li>
+                  <li>discovery : Petit, utilisé fréquemment, utilisé par les plugins et les processus de découverte</li>
+                  <li>Null : pour désactiver le cache (dev)</li>
+                </ul>
+                <p>On peut créer son propre "bin".</p>
+        </section>
+        <section>
+          <h2>Backends</h2>
           <div class="fragment" style="text-align: left; font-size: 0.6em">
-            <div>
-              <p>Par défaut mysql</p>
-              <p>Attention le cache n'est qu'invalider, donc les tables ne font que grossir (</p>
-              <p>Cache l'intégralité du rendu html d'une page <u>anonyme</u> dans le cache</p>
-              <p>Il peut être désactivé si on utilise un type de cache similaire (Varnish)</p>
+
+            <ul>
+              <li>core <code>core/core.services.yml</code>
+                <ul>
+                  <li>Memory : En mémoire, donc non persistant</li>
+                  <li>Database : Base de donnée, le stockage par défaut *</li>
+                  <li>APCu : Partage mémoire au travers du processus PHP (donc pas de partage avec drush/CLI ou avec d'autres frontaux)</li>
+                  <li>Null : pour désactiver le cache (dev)</li>
+                </ul>
+              </li>
+              <li>contribué
+                <ul>
+                  <li>Slushi Cache : Idem database, mais avec une durée de vie paramétrable</li>
+                  <li>Memcache : Base clé/valeur stocké en RAM <code>cache.backend.memcache_storage</code></li>
+                  <li>Redis: Base clé/valeur stocké en mémoire <code>cache.backend.redis</code></li>
+                  <li>Null: Désactive le cache (mode dev)</li>
+                </ul>
+              </li>
+            </ul>
+            <p>Le ChainedFast Backend (<code>cache.backend.chainedfast</code>) permet de chainer un backend rapide au-dessus d'un backend lent.</p>
+              <p>
+                * Attention, une partie du cache n'est pas détruite mais invalidé, donc les tables de cache peuvent devenir conséquentes.
+              </p>
+              </p>
             </div>
-            <img src="img/header.png" height="350">
-          </div>
 
 
         </section>
       </section>
 
-     <section 
+      <!-- ################## SLIDE ################## -->
+      <section 
         data-background="img/Fond.png" 
         class="section-slide" >
-          <section >
-            <h1>Des questions ?</h1>
-          </section>
+        <section >
+          <h2>Des questions ?</h2>
+          <p class="fragment">Cache d'une route avec JsonResponse </p>
+        </section>
       </section>
 
-     <section 
+      <!-- ################## SLIDE ################## -->
+      <section 
         data-background="img/Fond.png" 
         class="section-slide" >
-          <section >
-            <h1>Merci</h1>
-          </section>
-          <section >
-            <h2>à toute l'équipe du DrupalCamp Lannion 2017</h2>
-            <div><img src="img/drupalicon--homepage.png"></div>
-          </section>
-          <section>
-            <h2>aux sponsors</h2>
-            <div><img src="img/partenaires.png" alt="" height ="500"></div>
-          </section>
+        <section >
+          <h2>Merci</h2>
+        </section>
+        <section >
+          <h2>à toute l'équipe du DrupalCamp Lannion 2017</h2>
+          <div>
+            <img src="img/drupalicon--homepage.png"></div>
+        </section>
+        <section>
+          <h2>aux sponsors</h2>
+          <div>
+            <img src="img/partenaires.png" alt="" height ="500"></div>
+        </section>
       </section>
 
-
-      <!-- Ref -->
+      <!-- ################## SLIDE ################## -->
       <section  
 data-background="img/Fond.png" 
         class="section-slide" 
       >
-          <section >
-            <h1>Références</h1>
-          </section>
-          <section data-markdown style="text-align: left; width 50%;font-size: 2rem;">
-            ## Conférences
+        <section >
+          <h2>Références</h2>
+        </section>
+        <section data-markdown style="text-align: left; width 50%;font-size: 2rem;">
+          ## Conférences
             - https://md-systems.github.io/drupal-8-caching/
             - https://nantes2016.drupalcamp.fr/programme/sessions/render-api-cache-api
             - https://pnwdrupalsummit.org/sites/default/files/slides/Drupal%208%20Caching.pdf
             - Drupal 8 cache for developers - José Jiménez Carrión #DrupalCampES @jjca : https://youtu.be/kfy_JAKudnw
             - Drupal 8 Caching: A Developer’s Guide : https://youtu.be/eB4NWo5XwMY
             - BigPipe : https://youtu.be/JwzX0Qv6u3A
-         </section>
-         <section  data-markdown style="text-align: left; width 50%;font-size: 2rem;">
-          ## Serveurs
-          - https://varnish-cache.org/
-          - https://redis.io/documentation
-         </section>
-         <section data-markdown style="text-align: left; width 50%;font-size: 2rem;">
-          ## API
+        </section>
+        <section data-markdown style="text-align: left; width 50%;font-size: 2rem;">
+          ## APIs et docs
           - https://api.drupal.org/api/drupal/core!core.api.php/group/cache/8.5.x
           - https://www.drupal.org/docs/8/administering-drupal-8-site/internal-page-cache
           - https://www.drupal.org/docs/8/core/modules/dynamic-page-cache/overview
+          - https://www.drupal.org/docs/8/api/render-api/auto-placeholdering
+          - https://www.drupal.org/docs/8/api/render-api/cacheability-of-render-arrays
           - https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/http-caching
-         </section>
+          - https://www.drupal.org/project/renderviz
+        </section>
+        <section  data-markdown style="text-align: left; width 50%;font-size: 2rem;">
+          ## Serveurs
+          - https://varnish-cache.org
+          - https://redis.io/documentation
+        </section>        
       </section>
     </div>
   </div>
 
   <script src="lib/js/head.min.js"></script>
   <script src="js/reveal.js"></script>
-
   <script>
       // More info https://github.com/hakimel/reveal.js#configuration
       Reveal.initialize({

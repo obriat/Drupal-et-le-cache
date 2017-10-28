@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Image-3.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="850px" height="695px" viewBox="0 0 850 695" enable-background="new 0 0 850 695" xml:space="preserve">
+<g>
+	<g>
+		<path fill="#D7E8D2" d="M850,675c0,11-9,20-20,20H20c-11,0-20-9-20-20V20C0,9,9,0,20,0h810c11,0,20,9,20,20V675z"/>
+	</g>
+	<g>
+		<path fill="#B8DBAF" d="M820.504,404.141c0,8.25-6.75,15-15,15H45.505c-8.25,0-15-6.75-15-15v-307c0-8.25,6.75-15,15-15h759.999
+			c8.25,0,15,6.75,15,15V404.141z"/>
+	</g>
+	<g>
+		<path fill="#B8DBAF" d="M820.565,613.607c0,8.25-6.75,15-15,15h-760c-8.25,0-15-6.75-15-15V463.421c0-8.25,6.75-15,15-15h760
+			c8.25,0,15,6.75,15,15V613.607z"/>
+	</g>
+	<text transform="matrix(0.8636 0 0 1 364.2051 500.2148)" fill="#76986B" font-family="'SourceSansPro-Black'" font-size="33">Business</text>
+	<g>
+		<text transform="matrix(0.8636 0 0 1 383.709 132.2148)" fill="#75976B" font-family="'SourceSansPro-Black'" font-size="33">Sport</text>
+	</g>
+	<g>
+		<text transform="matrix(0.8636 0 0 1 350.4585 52.1484)" fill="#75976B" font-family="'SourceSansPro-Black'" font-size="33">Frontpage</text>
+	</g>
+	<g>
+		<path fill="#D7E8D2" d="M280.683,351.465c0,5.5-4.5,10-10,10h-200c-5.5,0-10-4.5-10-10v-180c0-5.5,4.5-10,10-10h200
+			c5.5,0,10,4.5,10,10V351.465z"/>
+	</g>
+	<g>
+		<path fill="#D7E8D2" d="M533.183,351.465c0,5.5-4.5,10-10,10h-200c-5.5,0-10-4.5-10-10v-180c0-5.5,4.5-10,10-10h200
+			c5.5,0,10,4.5,10,10V351.465z"/>
+	</g>
+	<g>
+		<path fill="#D7E8D2" d="M790.724,351.465c0,5.5-4.5,10-10,10h-200c-5.5,0-10-4.5-10-10v-180c0-5.5,4.5-10,10-10h200
+			c5.5,0,10,4.5,10,10V351.465z"/>
+	</g>
+	<text transform="matrix(0.8636 0 0 1 125.9678 207.9121)" fill="#75976B" font-family="'SourceSansPro-Black'" font-size="24.2">Article 6</text>
+	<text transform="matrix(0.8636 0 0 1 378.4668 207.9121)" fill="#75976B" font-family="'SourceSansPro-Black'" font-size="24.2">Article 5</text>
+	<text transform="matrix(0.8636 0 0 1 636.0088 207.9121)" fill="#75976B" font-family="'SourceSansPro-Black'" font-size="24.2">Article 4</text>
+	<text transform="matrix(1 0 0 1 135.7627 332.6729)" fill="#75976B" font-family="'SourceSansPro-Regular'" font-size="20">[node:6]</text>
+	<text transform="matrix(1 0 0 1 388.2627 332.6729)" fill="#B35C5A" font-family="'SourceSansPro-Regular'" font-size="20">[node:5]</text>
+	<text transform="matrix(1 0 0 1 645.8037 332.6729)" fill="#75976B" font-family="'SourceSansPro-Regular'" font-size="20">[node:4]</text>
+	<text transform="matrix(1 0 0 1 475.5283 598.5166)" fill="#75976B" font-family="'SourceSansPro-Regular'" font-size="20">[node:1 node:2 node:3 node:business]</text>
+	<text transform="matrix(1 0 0 1 388.3804 662.5908)" fill="#75976B" font-family="'SourceSansPro-Regular'" font-size="20">[node:1 </text>
+	
+		<text transform="matrix(1 0 0 1 388.3804 662.5908)" fill="none" stroke="#75976B" stroke-width="0.2" stroke-miterlimit="10" font-family="'SourceSansPro-Regular'" font-size="20">[node:1 </text>
+	
+		<text transform="matrix(1 0 0 1 456.1992 662.5908)" fill="#75976B" stroke="#75976B" stroke-width="0.2" stroke-miterlimit="10" font-family="'SourceSansPro-Regular'" font-size="20">node:2</text>
+	<text transform="matrix(1 0 0 1 513.918 662.5908)" fill="#75976B" font-family="'SourceSansPro-Regular'" font-size="20"> ... node:6 </text>
+	<text transform="matrix(1 0 0 1 598.6973 662.5908)" fill="#B35C5A" font-family="'SourceSansPro-Regular'" font-size="20">node:sport</text>
+	
+		<text transform="matrix(1 0 0 1 598.6973 662.5908)" fill="none" stroke="#B35C5A" stroke-width="0.2" stroke-miterlimit="10" font-family="'SourceSansPro-Regular'" font-size="20">node:sport</text>
+	<text transform="matrix(1 0 0 1 690.4951 662.5908)" fill="#75976B" font-family="'SourceSansPro-Regular'" font-size="20"> node:business]</text>
+	
+		<text transform="matrix(1 0 0 1 690.4951 662.5908)" fill="none" stroke="#75976B" stroke-width="0.2" stroke-miterlimit="10" font-family="'SourceSansPro-Regular'" font-size="20"> node:business]</text>
+	<text transform="matrix(1 0 0 1 502.4785 396.0781)" fill="#75976B" font-family="'SourceSansPro-Regular'" font-size="20">[node:4 </text>
+	
+		<text transform="matrix(1 0 0 1 502.4785 396.0781)" fill="none" stroke="#75976B" stroke-width="0.2" stroke-miterlimit="10" font-family="'SourceSansPro-Regular'" font-size="20">[node: </text>
+	<text transform="matrix(1 0 0 1 570.2969 396.0781)" fill="#B35C5A" font-family="'SourceSansPro-Regular'" font-size="20">node:5</text>
+	<text transform="matrix(1 0 0 1 628.0156 396.0781)" fill="#75976B" font-family="'SourceSansPro-Regular'" font-size="20"> node:6 </text>
+	
+		<text transform="matrix(1 0 0 1 628.0156 396.0781)" fill="none" stroke="#75976B" stroke-width="0.2" stroke-miterlimit="10" font-family="'SourceSansPro-Regular'" font-size="20"> node: </text>
+	<text transform="matrix(1 0 0 1 693.8154 396.0781)" fill="#B35C5A" font-family="'SourceSansPro-Regular'" font-size="20">node:sport</text>
+	
+		<text transform="matrix(1 0 0 1 693.8154 396.0781)" fill="none" stroke="#B35C5A" stroke-width="0.2" stroke-miterlimit="10" font-family="'SourceSansPro-Regular'" font-size="20">node:sport</text>
+	<text transform="matrix(1 0 0 1 785.6133 396.0781)" fill="#75976B" font-family="'SourceSansPro-Regular'" font-size="20">]</text>
+	
+		<text transform="matrix(1 0 0 1 785.6133 396.0781)" fill="none" stroke="#75976B" stroke-width="0.2" stroke-miterlimit="10" font-family="'SourceSansPro-Regular'" font-size="20">]</text>
+</g>
+</svg>
