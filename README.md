@@ -10,4 +10,4 @@ Présentation du 28 octobre au DrupalCamp 2017 Lannion
 - Utilisation du cache dans son code
 - Backends
 
-https://obriat.github.io/Drupal-et-le-cache/
+À lire en ligne : https://obriat.github.io/Drupal-et-le-cache/
